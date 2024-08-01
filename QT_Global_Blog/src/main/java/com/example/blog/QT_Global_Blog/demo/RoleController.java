@@ -1,4 +1,4 @@
-package com.example.blog.QT_Global_Blog.controller;
+package demo;
 
 import com.example.blog.QT_Global_Blog.DaoRepository.RoleRepository;
 import com.example.blog.QT_Global_Blog.userEntities.Role;
