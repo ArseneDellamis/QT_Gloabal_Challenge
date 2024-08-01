@@ -1,2 +1,7 @@
-package com.example.blog.QT_Global_Blog.AuthenticeConfig;public class JwtService {
+package com.example.blog.QT_Global_Blog.AuthenticeConfig;
+
+public class JwtService {
+    public String extractUsername(String jwtToken) {
+        return null;
+    }
 }

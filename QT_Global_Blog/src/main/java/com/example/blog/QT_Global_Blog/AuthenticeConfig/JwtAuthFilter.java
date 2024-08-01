@@ -11,9 +11,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+//during jwt authentication implement authentication filter first
 @Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
+
+    private final JwtService jwtService;
     @Override
     protected void doFilterInternal(
             @NotNull HttpServletRequest request,
@@ -22,6 +25,16 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException
     {
 
-        final String
+        final String authHeader = request.getHeader(AuthConstants.HEADER_STRING);
+        final String jwtToken;
+        final String userEmail;
+        if (authHeader == null || !authHeader
+                .startsWith(AuthConstants.TOKEN_PREFIX)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+//        extracting token form authheader
+        jwtToken = authHeader.substring(7);
+        userEmail = jwtService.extractUsername(jwtToken);//todo extract userEmail from token;
     }
 }
