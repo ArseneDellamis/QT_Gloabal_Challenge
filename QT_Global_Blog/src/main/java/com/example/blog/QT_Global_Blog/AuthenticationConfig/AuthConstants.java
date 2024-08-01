@@ -1,4 +1,4 @@
-package com.example.blog.QT_Global_Blog.AuthenticeConfig;
+package com.example.blog.QT_Global_Blog.AuthenticationConfig;
 
 public class AuthConstants {
     public static final String SECRET = "1N8JW4yehXG6QnjQ9GX97X7TywK8jH1Dre/oiprSKgNGvg9eio0Z4krfFXGZTIxb";

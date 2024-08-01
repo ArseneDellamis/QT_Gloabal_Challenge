@@ -1,4 +1,4 @@
-package com.example.blog.QT_Global_Blog.AuthenticeConfig;
+package com.example.blog.QT_Global_Blog.AuthenticationConfig;
 
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

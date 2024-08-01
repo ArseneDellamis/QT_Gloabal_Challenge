@@ -1,4 +1,4 @@
-package com.example.blog.QT_Global_Blog.AuthenticeConfig;
+package com.example.blog.QT_Global_Blog.AuthenticationConfig;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

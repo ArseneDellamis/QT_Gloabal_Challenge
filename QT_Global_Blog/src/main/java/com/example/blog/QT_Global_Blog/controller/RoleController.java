@@ -1,7 +1,6 @@
-package com.example.blog.QT_Global_Blog.RestAPIcontroller;
+package com.example.blog.QT_Global_Blog.controller;
 
 import com.example.blog.QT_Global_Blog.DaoRepository.RoleRepository;
-import com.example.blog.QT_Global_Blog.userEntities.BlogUser;
 import com.example.blog.QT_Global_Blog.userEntities.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
