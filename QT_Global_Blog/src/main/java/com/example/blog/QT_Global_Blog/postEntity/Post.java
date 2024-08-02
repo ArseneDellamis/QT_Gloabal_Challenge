@@ -1,4 +1,4 @@
-package com.blogApp.blogApp.postEntity;
+package com.example.blog.QT_Global_Blog.postEntity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
