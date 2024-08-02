@@ -1,9 +1,10 @@
-package com.blogApp.blogApp.controller;
+package com.example.blog.QT_Global_Blog.postcontroller;
 
-import com.blogApp.blogApp.DaoRepository.CommentRepository;
-import com.blogApp.blogApp.DaoRepository.PostRepository;
-import com.blogApp.blogApp.postEntity.Comment;
-import com.blogApp.blogApp.postEntity.Post;
+
+import com.example.blog.QT_Global_Blog.DaoRepository.CommentRepository;
+import com.example.blog.QT_Global_Blog.DaoRepository.PostRepository;
+import com.example.blog.QT_Global_Blog.postEntity.Comment;
+import com.example.blog.QT_Global_Blog.postEntity.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
