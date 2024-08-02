@@ -1,4 +1,4 @@
-package com.example.blog.QT_Global_Blog.postEntity;
+package com.blogApp.blogApp.postEntity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,7 +30,6 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments= new ArrayList<>();
 
-    @Transient
-    private long commentCount;
+
 
 }
