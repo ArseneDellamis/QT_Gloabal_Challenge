@@ -1,4 +1,4 @@
-package com.blogApp.blogApp.DaoRepository;
+package com.example.blog.QT_Global_Blog.DaoRepository;
 
 import com.blogApp.blogApp.postEntity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
