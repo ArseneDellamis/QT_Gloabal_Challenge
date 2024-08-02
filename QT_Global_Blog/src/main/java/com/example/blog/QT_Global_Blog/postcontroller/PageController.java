@@ -1,4 +1,4 @@
-package com.blogApp.blogApp.controller;
+package com.example.blog.QT_Global_Blog.postcontroller;
 
 import com.blogApp.blogApp.DaoRepository.CommentRepository;
 import com.blogApp.blogApp.DaoRepository.PostRepository;

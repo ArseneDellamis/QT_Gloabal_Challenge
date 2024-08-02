@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .post {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .post:last-child {
+            border-bottom: none;
+        }
+
+        .post h3 {
+            margin: 0 0 10px;
+        }
+
+        .post p {
+            margin: 0;
+        }
+
+        .post-buttons {
+            margin-top: 10px;
+        }
+
+        .post-buttons a {
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: inline-block;
+            font-size: 14px;
+        }
+
+        .post-buttons a.view {
+            background-color: #2196F3;
+        }
+
+        .post-buttons a.view:hover {
+            background-color: #1976D2;
+        }
+
+        .post-buttons a.comments {
+            background-color: #FFC107;
+        }
+
+        .post-buttons a.comments:hover {
+            background-color: #FFA000;
+        }
+
+        .comment-form {
+            margin-top: 20px;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .comment-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .comment-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .comment-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Post Details</h2>
+    <div class="post">
+        <h3 th:text="${post.title}">Post Title</h3>
+        <p>Created At: <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">Created At</span></p>
+        <br>
+        <p th:text="${post.content}">Post Content</p>
+        <br>
+        <p>Author: <span th:text="${post.author}">Author Name</span></p>
+    </div>
+
+    <div class="comment-form">
+        <h3>Add Comment</h3>
+        <form th:action="@{/api/posts/{id}/add-comment(id=${post.id})}" method="post" th:object="${newComment}">
+            <textarea name="commentContent" th:field="*{commentContent}" placeholder="Enter your comment here" required></textarea>
+            <input type="text" name="postedBy" th:field="*{postedBy}" placeholder="Your Name" required />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+
+    <h3>Comments</h3>
+    <div th:each="comment : ${comments}" class="comment">
+        <p th:text="${comment.commentContent}">Comment Content</p>
+        <p th:text="${comment.postedBy}">Posted By</p>
+        <p th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm')}">Created At</p>
+    </div>
+</div>
+</body>
+</html>
+
