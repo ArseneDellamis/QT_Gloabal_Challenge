@@ -3,6 +3,7 @@ package com.example.blog.QT_Global_Blog.postcontroller;
 
 import com.example.blog.QT_Global_Blog.DaoRepository.CommentRepository;
 import com.example.blog.QT_Global_Blog.DaoRepository.PostRepository;
+import com.example.blog.QT_Global_Blog.ResponseHandler.Response;
 import com.example.blog.QT_Global_Blog.postEntity.Comment;
 import com.example.blog.QT_Global_Blog.postEntity.Post;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class CommentController {
     private final PostRepository postRepo;
 
     @PostMapping("/{postId}")
-    public ResponseEntity<String> commentOnPost(@RequestBody Comment comment, @PathVariable long postId) {
+    public ResponseEntity<Response> commentOnPost(@RequestBody Comment comment, @PathVariable long postId) {
         Optional<Post> getPost = postRepo.findById(postId);
         if (getPost.isEmpty()) {
             throw new RuntimeException("Post Not Found!");
@@ -32,7 +33,10 @@ public class CommentController {
         comment.setCreatedAt(LocalDateTime.now());
         comment.setUpdatedAt(LocalDateTime.now());
         Comment newComment = commentRepo.save(comment);
-        return ResponseEntity.status(HttpStatus.CREATED).body("comment Added");
+        Response<Comment> commentResponse= new Response<>();
+        commentResponse.setStatus(HttpStatus.CREATED);
+        commentResponse.setMessage("comment Added");
+        return ResponseEntity.status(HttpStatus.CREATED).body(commentResponse);
     }
 
     @GetMapping("/{postId}")
@@ -53,9 +57,12 @@ public class CommentController {
         return ResponseEntity.ok(commentRepo.save(comment));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteComment(@PathVariable Long id) {
+    public ResponseEntity<Response> deleteComment(@PathVariable Long id) {
         Comment comment = commentRepo.findById(id).orElseThrow(() -> new RuntimeException("Comment not found"));
         commentRepo.delete(comment);
-        return ResponseEntity.ok("Comment deleted successfully");
+        Response<Comment> response= new Response<>();
+        response.setStatus(HttpStatus.OK);
+        response.setMessage("Comment deleted successfully");
+        return ResponseEntity.ok(response);
     }
 }

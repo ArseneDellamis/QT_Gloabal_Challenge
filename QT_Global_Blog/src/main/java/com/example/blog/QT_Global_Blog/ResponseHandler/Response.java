@@ -1,4 +1,4 @@
-package com.example.blog.QT_Global_Blog.postcontroller;
+package com.example.blog.QT_Global_Blog.ResponseHandler;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,9 +10,9 @@ import org.springframework.http.HttpStatus;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentResponse<T> {
+public class Response<T> {
     private HttpStatus status;
-    private T message;
+    private String message;
 
 
 }

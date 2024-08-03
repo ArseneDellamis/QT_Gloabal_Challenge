@@ -3,6 +3,7 @@ package com.example.blog.QT_Global_Blog.postcontroller;
 
 import com.example.blog.QT_Global_Blog.DaoRepository.CommentRepository;
 import com.example.blog.QT_Global_Blog.DaoRepository.PostRepository;
+import com.example.blog.QT_Global_Blog.ResponseHandler.Response;
 import com.example.blog.QT_Global_Blog.postEntity.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,9 +45,12 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePost(@PathVariable Long id) {
+    public ResponseEntity<Response> deletePost(@PathVariable Long id) {
         Post post = postRepo.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
         postRepo.delete(post);
-        return ResponseEntity.ok("Post deleted successfully");
+        Response<Post> postResponse = new Response<>();
+        postResponse.setStatus(HttpStatus.OK);
+        postResponse.setMessage("Post deleted successfully");
+        return ResponseEntity.ok(postResponse);
     }
 }
