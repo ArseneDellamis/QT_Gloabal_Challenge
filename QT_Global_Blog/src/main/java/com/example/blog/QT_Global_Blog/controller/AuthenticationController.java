@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+// exposed RestfulApi for login and Register
 public class AuthenticationController {
     private final AuthService service;
+
+//    registering a new user http://localhost:8080/api/auth/register
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
             @RequestBody RegisterRequest request
@@ -24,6 +27,7 @@ public class AuthenticationController {
         return ResponseEntity.ok(service.register(request));
     }
 
+    //    registering a new user http://localhost:8080/api/auth/authenticate
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request

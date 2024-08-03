@@ -15,6 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "posts")
+
+//class Mapped db table post
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

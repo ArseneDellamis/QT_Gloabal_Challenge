@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "role")
+//class Mapped db table role
 public class Role {
 
     @Id

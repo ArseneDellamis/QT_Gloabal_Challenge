@@ -17,6 +17,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 //during jwt authentication implement authentication filter first
+//responsible for validation and communicate to the dispatcherServlet
+//for request and response
 @Component
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -29,11 +31,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             @NotNull HttpServletResponse response,
             @NotNull FilterChain filterChain)
             throws ServletException, IOException {
-
+// here we are creating the header for our jwt token
         final String authHeader = request.getHeader(AuthConstants.HEADER_STRING);
         final String jwtToken;
         final String userEmail;
         if (authHeader == null || !authHeader
+//                token prefix is used is "Bearer "
                 .startsWith(AuthConstants.TOKEN_PREFIX)) {
             filterChain.doFilter(request, response);
             return;

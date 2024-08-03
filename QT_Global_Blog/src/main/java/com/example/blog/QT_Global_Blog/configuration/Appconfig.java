@@ -17,13 +17,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class Appconfig {
+//    Class include all necessary bean for configuration
     private final BlogUserRepository userRepository;
+
+//     a built-in user model
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
     }
 
+//    authentication provide bean
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -38,6 +42,7 @@ public class Appconfig {
         return config.getAuthenticationManager();
     }
 
+//    for decoding and encoding password
     @Bean
     public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();

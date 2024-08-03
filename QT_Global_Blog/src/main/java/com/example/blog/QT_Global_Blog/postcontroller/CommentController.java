@@ -18,10 +18,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/comments")
 @RequiredArgsConstructor
+
+//RestAPi for comments and endpoint accessible for and authenticated user
 public class CommentController {
     private final CommentRepository commentRepo;
     private final PostRepository postRepo;
 
+    // add(Post) comment on a post by id http://localhost:8080/api/comments/{postId}
     @PostMapping("/{postId}")
     public ResponseEntity<Response> commentOnPost(@RequestBody Comment comment, @PathVariable long postId) {
         Optional<Post> getPost = postRepo.findById(postId);
@@ -39,12 +42,14 @@ public class CommentController {
         return ResponseEntity.status(HttpStatus.CREATED).body(commentResponse);
     }
 
+    // Get all comments on a post by id http://localhost:8080/api/comments/{postId}
     @GetMapping("/{postId}")
     public ResponseEntity<List<String>> getAllCommentsByPostId(@PathVariable long postId) {
         List<String> comments = commentRepo.findAllCommentByPostId(postId);
         return ResponseEntity.ok(comments);
     }
 
+    // Update comment on a post by id http://localhost:8080/api/comments/{postId}
     @PutMapping("/{id}")
     public ResponseEntity<Comment> updateComment(@PathVariable Long id, @RequestBody Comment comment) {
         Comment comment1 = commentRepo.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
@@ -56,6 +61,8 @@ public class CommentController {
 
         return ResponseEntity.ok(commentRepo.save(comment));
     }
+
+    // delete comment on a post by id http://localhost:8080/api/comments/{postId}
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> deleteComment(@PathVariable Long id) {
         Comment comment = commentRepo.findById(id).orElseThrow(() -> new RuntimeException("Comment not found"));

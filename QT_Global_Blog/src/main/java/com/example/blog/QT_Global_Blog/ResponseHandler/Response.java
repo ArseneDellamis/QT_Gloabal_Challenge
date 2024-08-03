@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+//this generic class to display json format for status and message
 public class Response<T> {
     private HttpStatus status;
     private String message;

@@ -18,6 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "blogUser")
+//class Mapped db table blogUser
 public class BlogUser implements UserDetails {
 
     @Id

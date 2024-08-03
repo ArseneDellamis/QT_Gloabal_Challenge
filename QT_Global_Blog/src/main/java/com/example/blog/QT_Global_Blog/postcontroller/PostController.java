@@ -16,17 +16,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/posts")
 @RequiredArgsConstructor
+
+//RestAPi for posting and endpoint accessible for and authenticated user
 public class PostController {
     private final PostRepository postRepo;
 
-    private final CommentRepository commentRepo;
-
+//    get all Posts http://localhost:8080/api/posts
     @GetMapping
     public ResponseEntity<List<Post>> findAllPosts() {
         List<Post> getAll = postRepo.findAll();
         return ResponseEntity.ok(getAll);
     }
 
+    // creating a post http://localhost:8080/api/posts/create-post
     @PostMapping("/create-post")
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
         post.setCreatedAt(LocalDateTime.now());
@@ -34,8 +36,12 @@ public class PostController {
         Post newPost = postRepo.save(post);
         return ResponseEntity.status(HttpStatus.CREATED).body(newPost);
     }
+
+
+    //    update post by id http://localhost:8080/api/posts/{id}
     @PutMapping("/{id}")
-    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post postDetails) {
+    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post postDetails) { // passing post id to update , and body
+        //checking if post exists or not
         Post post = postRepo.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
         post.setTitle(postDetails.getTitle());
         post.setContent(postDetails.getContent());
@@ -44,8 +50,9 @@ public class PostController {
         return ResponseEntity.ok(postRepo.save(post));
     }
 
+    // delete post by id http://localhost:8080/api/posts/{id}
     @DeleteMapping("/{id}")
-    public ResponseEntity<Response> deletePost(@PathVariable Long id) {
+    public ResponseEntity<Response> deletePost(@PathVariable Long id) {//passing the post id to delete as parameter
         Post post = postRepo.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
         postRepo.delete(post);
         Response<Post> postResponse = new Response<>();
