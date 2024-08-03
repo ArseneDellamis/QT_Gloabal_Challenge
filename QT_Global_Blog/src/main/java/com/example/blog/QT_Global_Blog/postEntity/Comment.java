@@ -13,21 +13,22 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "comments")
+@Table(name = "comment")
 //class Mapped db table comment
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
-
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
-
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "comment_content")
     private String commentContent;
-
+    @Column(name = "posted_by")
     private String postedBy;
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 }

@@ -49,19 +49,6 @@ public class CommentController {
         return ResponseEntity.ok(comments);
     }
 
-    // Update comment on a post by id http://localhost:8080/api/comments/{postId}
-    @PutMapping("/{id}")
-    public ResponseEntity<Comment> updateComment(@PathVariable Long id, @RequestBody Comment comment) {
-        Comment comment1 = commentRepo.findById(id).orElseThrow(() -> new RuntimeException("Post not found"));
-        comment1.setPost(comment.getPost());
-        comment1.setCommentContent(comment.getCommentContent());
-        comment1.setPostedBy(comment.getPostedBy());
-        comment1.setCreatedAt(LocalDateTime.now());
-        comment1.setUpdatedAt(LocalDateTime.now());
-
-        return ResponseEntity.ok(commentRepo.save(comment));
-    }
-
     // delete comment on a post by id http://localhost:8080/api/comments/{postId}
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> deleteComment(@PathVariable Long id) {
