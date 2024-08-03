@@ -81,6 +81,12 @@ data of our blog application
 
 |description | RestApi|
 |------------|--------|
-|get all posts | http://localhost:8080/api/posts|
-|create a post | http://localhost:8080/api/posts/create-post|
+| get all posts | http://localhost:8080/api/posts|
+| create a post | http://localhost:8080/api/posts/create-post|
+| update a post | http://localhost:8080/api/posts/{id}|
+| delete a post | http://localhost:8080/api/posts/{id}|
+| comment on post | http://localhost:8080/api/comments/{postId}|
+| get all comment on a single post | http://localhost:8080/api/comments/{postId}|
+| delete comment | http://localhost:8080/api/comments/{postId}|
+
 
