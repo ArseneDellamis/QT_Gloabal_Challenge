@@ -24,6 +24,61 @@ program backend uses:
  1. database
  2. tables
 - after installation of java ide navigate to the extracted file then open with the ide
+## application Structure
+```plaintext
+com.example.blog.QT_Global_Blog/
+├── AuthenticationConfig/
+│   ├── AuthConstants.java
+│   ├── JwtAuthFilter.java
+│   ├── JwtService.java
+├── configuration/
+│   ├── Application.java
+│   ├── SecurityConfig.java
+├── controller/
+│   ├── AuthenticationController.java
+├── DaoRepository/
+│   ├── BlogUserRepository.java
+│   ├── CommentRepository.java
+│   ├── PostRepository.java
+│   ├── RoleRepository.java
+├── PayLoad/
+│   ├── AuthenticationRequest.java
+│   ├── AuthenticationResponse.java
+│   ├── RegisterRequest.java
+├── postcontroller/
+│   ├── CommentController.java
+│   ├── PostController.java
+├── postEntity/
+│   ├── Comment.java
+│   ├── Post.java
+├── ResponseHandler/
+│   ├── Response.java
+├── service/
+│   ├── AuthService.java
+├── UserEntities/
+│   ├── BlogUser.java
+└── ├── BlogUser.java
+```
+**_1. AuthenticationConfig :_** contains the jwt configuration like token creation, token generation, claims extraction, etc...
+
+**_2. Configuration :_** contains security configuration like authentication and authorization and session management
+
+**_3. controller :_** contains authentication endpoints
+
+**_4. DaoRepository :_** data access Layer where database communication is happenning
+
+**_5. PayLoad :_** this contains client Request page for authentication and registration
+
+**_6. postController :_** contains endpoint for CRUD Operation on Post and its comments
+
+**_7. postEntity :_** contains classes that are mapped to database Post and comment tables
+
+**_8. ResponseHandler :_** contains a custom class that handles HttpResponse showing status code and message
+
+**_9. service :_** contains authentication mechanism for generating a token for the authenticated or Registered user
+
+**_10. userEntities :_** contains classes mapped to the database bloguser and role tables
+
 
 ### Dependencies
 project dependencies available for the projects
@@ -56,7 +111,12 @@ project dependencies available for the projects
  if you want to use your own database
 
 ### application.properties configuration for database
-
+```plaintext
+├── resources/
+│   ├── static/
+│   ├── templates/
+└── ├── application.properties
+```
 spring.datasource.url=jdbc:postgresql://localhost:5432/database_name
 spring.datasource.username=your_username
 spring.datasource.password=your_password
@@ -88,5 +148,7 @@ data of our blog application
 | comment on post | http://localhost:8080/api/comments/{postId}|
 | get all comment on a single post | http://localhost:8080/api/comments/{postId}|
 | delete comment | http://localhost:8080/api/comments/{postId}|
+
+
 
 
