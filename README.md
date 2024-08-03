@@ -3,6 +3,7 @@
 blog application is an application creating content, post them and user can add comment
 update,edit,delete only when the user is Authenticated and Authorized
 
+
 ## Technologies
 program backend uses:
     1. Java Spring Boot
@@ -17,6 +18,11 @@ program backend uses:
 - the file contains:
   1. QT_Global_Blog
   2. sql_script
+### sample data 
+Authenticated useremail and password to use
+ 1. _email_: **user1@gmail.com**
+ 2. _password_: **user1**
+     
 ### set IDE environment
 - download and install any java ide(intellij, Eclipse, etc..)
 - any DataBase Management System (DBMS) like PostgreSQL, MYSQLworkbench,etc...
@@ -59,6 +65,7 @@ com.example.blog.QT_Global_Blog/
 │   ├── BlogUser.java
 └── ├── BlogUser.java
 ```
+
 **_1. AuthenticationConfig :_** contains the jwt configuration like token creation, token generation, claims extraction, etc...
 
 **_2. Configuration :_** contains security configuration like authentication and authorization and session management
